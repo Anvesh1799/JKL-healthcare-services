@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JKL Health Services</title>
+<link rel="stylesheet" type="text/css" href="style.css">
+<link rel="stylesheet" href="scrip.js">
+<script>
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+
+      const response = await fetch('http://localhost:3000/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password })
+      });
+      const data = await response.json();
+
+      if (data.success) {
+        localStorage.setItem('token', data.token);
+        window.location.href = 'dashboard.html';
+      } else {
+        alert('Incorrect username or password');
+      }
+    });
+  </script>
+</head>
+<body>
+<header>
+<div class="main">
+<div class="logo">
+<img src="logo1.png">
+</div>
+<ul>
+<li class="active"><a href="#">Home</a></li>
+<li><a href="dashboard.html">Patient dashboard</a> </li>
+<li><a href="caregiver.html">Caregiver Assignment Dashboard </a></li>
+<li><a href="appointment.html">Appointment Scheduling</a></li>
+<li><a href="registration.html">REGISTRATION</a></li>
+<li><a href="help.html">HELP </a></li>
+</ul>
+</div>
+<div class="title">
+<h1>JKL Health Services<h1>
+</div>
+<div class="button">
+<a href="login.html" class="btn">Login Now</a>
+</header>
+</body>
+<footer>
+  <div class="social-media">
+    <a href="#"><img src="facebook.png"></a>
+    <a href="#"><img src="twitter.png"></a>
+    <a href="#"><img src="instagram.png"></a>
+  </div>
+  <div class="contact-info">
+    <p>Contact us at: <a href="mailto:info@jklhealthservices.com">info@jklhealthservices.com</a></p>
+    <p>Phone: (123) 456-7890</p>
+  </div>
+  <div class="newsletter">
+    <p>Sign up for our newsletter</p>
+    <input type="text" placeholder="Enter your email address">
+    <button type="submit">Subscribe</button>
+  </div>
+  <div class="copyright">
+    <p>&copy; 2022 JKL Health Services. All rights reserved.</p>
+    <p>This website is developed by Anvesh</p>
+  </div>
+
+</footer>
+</html>
